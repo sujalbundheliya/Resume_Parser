@@ -1,0 +1,6 @@
+streamlit
+spacy
+pdfplumber
+python-docx
+# Optional: Install the spaCy model via pip (instead of using "python -m spacy download en_core_web_sm"):
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0.tar.gz
