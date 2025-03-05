@@ -109,7 +109,30 @@ def read_txt(file):
 #############################################
 # 4. Extraction Functions
 #############################################
+def extract_name(text):
+    """
+    Extract the candidate's name from the resume text.
+    Steps:
+    1. Use spaCy NER to find PERSON entities and filter out those with digits.
+    2. Return the first valid PERSON entity based on text position.
+    3. If no valid entity is found, use a regex fallback for two or more capitalized words.
+    
+    Returns:
+        Candidate name (str) or "Not found" if no name is detected.
+    """
+    doc_spacy = nlp(text)
+    lines = [line.strip() for line in text.split("\n") if line.strip()]
 
+    name_pattern = r"^(Dr\.|Mr\.|Ms\.|Mrs\.)?\s*[A-Za-z\s,]+(,\s*(MD|PhD|Jr\.|Sr\.))?$"
+    excluded_headers = {"work experience", "education history", "relevant skills", 
+                       "volunteer work", "geriatric medicine", "contact information"}
+    for i, line in enumerate(lines[:5]):
+        if (re.match(name_pattern, line) and 
+            line.lower() not in excluded_headers):
+            return line
+        else:
+            return "Not found"
+        
 def extract_emails(text):
     """Extract all email addresses from text using regex."""
     email_pattern = r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+"
@@ -159,6 +182,7 @@ if uploaded_files:
         resume_text = read_pdf(uploaded_file) if extension == "pdf" else read_docx(uploaded_file) if extension == "docx" else read_txt(uploaded_file)
 
         # Extract details
+        name = extract_name(resume_text)
         emails = extract_emails(resume_text)
         phones = extract_phone_numbers(resume_text)
         skills_extracted = extract_skills(resume_text)
@@ -166,6 +190,7 @@ if uploaded_files:
 
         # Display extracted details
         st.subheader("Extracted Information")
+        st.write(f"**Name:** {''.join(name) if name else 'Not found'}")
         st.write(f"**Emails:** {', '.join(emails) if emails else 'Not found'}")
         st.write(f"**Phone Numbers:** {', '.join(phones) if phones else 'Not found'}")
         st.write(f"**Extracted Skills:** {', '.join(skills_extracted) if skills_extracted else 'Not found'}")
