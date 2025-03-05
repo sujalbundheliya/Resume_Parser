@@ -9,6 +9,8 @@ It's recommended to use a virtual environment to isolate dependencies:
 
 ```bash
 python -m venv env
+```
+```bash
 source env/bin/activate  # On macOS/Linux
 env\Scripts\activate     # On Windows
 ```
@@ -27,7 +29,6 @@ streamlit
 spacy
 pdfplumber
 python-docx
-en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0.tar.gz
 ```
 After installing, download the spaCy model:
 
