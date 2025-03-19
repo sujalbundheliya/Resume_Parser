@@ -18,10 +18,19 @@ It's recommended to use a virtual environment to isolate dependencies:
 ```bash
 python -m venv env
 ```
+
+### On Windows
 ```bash
-source env/bin/activate  # On macOS/Linux
-env\Scripts\activate     # On Windows
+env\Scripts\activate  
+cd Resume_Parser
 ```
+
+### On macOS/Linux
+```bash
+source env/bin/activate
+cd Resume_Parser 
+```
+
 
 ## Installation
 
