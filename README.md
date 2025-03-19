@@ -3,6 +3,14 @@
 **Short Description (under 350 characters):**  
 This Streamlit app parses resumes (PDF, DOCX, or TXT) using spaCy and pdfplumber. It extracts name, email, phone, and skills, then compares them to field-specific requirements for a match percentage. Great for quickly evaluating how well a resume matches a given job role.
 
+## Clone the Repository
+
+To clone this repository, run:
+
+```bash
+git clone https://github.com/sujalbundheliya/Resume_Parser.git
+```
+
 ## Environment Setup
 
 It's recommended to use a virtual environment to isolate dependencies:
@@ -14,6 +22,7 @@ python -m venv env
 source env/bin/activate  # On macOS/Linux
 env\Scripts\activate     # On Windows
 ```
+
 ## Installation
 
 Install the required Python packages:
@@ -24,12 +33,13 @@ pip install -r requirements.txt
 
 Where `requirements.txt` might look like this:
 
-```ruby
+```text
 streamlit
 spacy
 pdfplumber
 python-docx
 ```
+
 After installing, download the spaCy model:
 
 ```bash
